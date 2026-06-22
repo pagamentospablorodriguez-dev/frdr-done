@@ -26,7 +26,7 @@ const TRACKS: Track[] = [
     description: 'Buzinas, freios, motores — o caos do rush hour',
     useCase: '"Estou preso no trânsito, chego em 30min"',
     tags: ['trânsito', 'atraso', 'urgência'],
-    youtubeId: 'DJuqnPbxMaE',
+    youtubeId: 'SE38fPUuEo8',
   },
   {
     id: 'hospital',
@@ -35,7 +35,7 @@ const TRACKS: Track[] = [
     description: 'Passos, chamadas de PA, vozes ao fundo',
     useCase: '"Tive que levar alguém ao pronto-socorro"',
     tags: ['hospital', 'emergência', 'família'],
-    youtubeId: '2OzlksZBTiA',
+    youtubeId: 'SYvNJIovdtk',
   },
   {
     id: 'airport',
@@ -44,7 +44,7 @@ const TRACKS: Track[] = [
     description: 'Anúncios de voo, multidão, turbinas ao fundo',
     useCase: '"Estou no aeroporto — viagem de negócios"',
     tags: ['viagem', 'negócios', 'clássico'],
-    youtubeId: 'kgzLMR-NLLY',
+    youtubeId: 'vTX-Nhs-kUo',
   },
   {
     id: 'office',
@@ -53,7 +53,7 @@ const TRACKS: Track[] = [
     description: 'Teclados, conversas ao fundo, telefones',
     useCase: '"Estou num cliente, muito movimento aqui"',
     tags: ['cliente', 'meeting', 'trabalho'],
-    youtubeId: 'r7i6mfTbMbw',
+    youtubeId: '8tKpjMh_OUw',
   },
   {
     id: 'cafe',
@@ -62,7 +62,7 @@ const TRACKS: Track[] = [
     description: 'Máquina de café, conversas suaves',
     useCase: '"Estou num café trabalhando, sinal ruim"',
     tags: ['casual', 'remoto', 'coworking'],
-    youtubeId: 'inpok4MKVLM',
+    youtubeId: 'uiMXGIG_DQo',
   },
   {
     id: 'rain',
