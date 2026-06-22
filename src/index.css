@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #020f0a;
+  color: #e8fff4;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #041a10;
+}
+::-webkit-scrollbar-thumb {
+  background: #00f5a0;
+  border-radius: 2px;
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  }
+  .text-glow {
+    text-shadow: 0 0 12px rgba(0, 245, 160, 0.7);
+  }
+  .border-glow {
+    box-shadow: 0 0 12px rgba(0, 245, 160, 0.25), inset 0 0 12px rgba(0, 245, 160, 0.05);
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(0, 245, 160, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 245, 160, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .terminal-line::before {
+    content: '›';
+    color: #00f5a0;
+    margin-right: 8px;
+  }
+}
+
+/* Range input custom styling */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+input[type='range']::-webkit-slider-runnable-track {
+  height: 4px;
+  background: #0d3320;
+  border-radius: 2px;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #00f5a0;
+  margin-top: -6px;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 245, 160, 0.5);
+}
+input[type='range']::-moz-range-track {
+  height: 4px;
+  background: #0d3320;
+  border-radius: 2px;
+}
+input[type='range']::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #00f5a0;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 245, 160, 0.5);
+}
+
+/* Textarea and inputs */
+textarea, input[type='text'], input[type='number'], select {
+  background: #041a10;
+  border: 1px solid #0d3320;
+  color: #e8fff4;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+textarea:focus, input[type='text']:focus, input[type='number']:focus, select:focus {
+  border-color: #00f5a0;
+  box-shadow: 0 0 0 2px rgba(0, 245, 160, 0.15);
+}
+select option {
+  background: #041a10;
+  color: #e8fff4;
+}
