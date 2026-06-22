@@ -27,25 +27,42 @@ const TEMPLATES = [
   { label: 'Avaliação de desempenho', text: 'Precisamos conversar sobre sua performance essa semana.' },
 ];
 
-async function callAutoResponder(message: string, tone: Tone, urgency: Urgency): Promise<string> {
+
+
+async function callAutoResponder(
+  message: string,
+  tone: Tone,
+  urgency: Urgency
+): Promise<string> {
+
   const res = await fetch(
-    `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/auto-responder`,
+    "/.netlify/functions/auto-responder",
     {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ message, tone, urgency }),
+      body: JSON.stringify({
+        message,
+        tone,
+        urgency,
+      }),
     }
   );
+
   if (!res.ok) {
     const err = await res.text();
-    throw new Error(err || 'Erro ao contatar o servidor');
+    throw new Error(err || "Erro ao contatar o servidor");
   }
+
   const data = await res.json();
-  return data.response as string;
+
+  return data.response;
 }
+
+
+
+
 
 export default function ResponderModule({ onResponse }: ResponderProps) {
   const [message, setMessage] = useState('');
