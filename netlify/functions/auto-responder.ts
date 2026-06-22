@@ -1,4 +1,4 @@
-import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import type { Handler } from "@netlify/functions";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -121,40 +121,54 @@ function getResponse(tone: string, urgency: string): string {
   return base;
 }
 
-Deno.serve(async (req: Request) => {
-  if (req.method === "OPTIONS") {
-    return new Response(null, { status: 200, headers: corsHeaders });
-  }
 
+
+
+export const handler: Handler = async (event) => {
   try {
-    const body = await req.json();
-    const { message, tone = "aligning" } = body;
+    const body = JSON.parse(event.body || "{}");
+
+    const {
+      message,
+      tone = "aligning",
+    } = body;
+
     let { urgency } = body;
 
     if (!message || typeof message !== "string") {
-      return new Response(JSON.stringify({ error: "Campo 'message' é obrigatório" }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      return {
+        statusCode: 400,
+        body: JSON.stringify({
+          error: "Campo 'message' é obrigatório",
+        }),
+      };
     }
 
-    // Auto-detect urgency from message if not provided
     if (!urgency) {
       urgency = detectUrgency(message);
     }
 
     const response = getResponse(tone, urgency);
 
-    return new Response(JSON.stringify({ response, urgency_detected: urgency }), {
-      status: 200,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        response,
+        urgency_detected: urgency,
+      }),
+    };
 
-  } catch (err: unknown) {
-    const msg = err instanceof Error ? err.message : "Erro interno";
-    return new Response(JSON.stringify({ error: msg }), {
-      status: 500,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error:
+          err instanceof Error
+            ? err.message
+            : "Erro interno",
+      }),
+    };
   }
-});
+};
+
+
